@@ -16,27 +16,52 @@ public class Squares extends SurfaceView {
     private SquareModel squareModel;
     private SquareController squareController;
     private Paint square = new Paint();
+    private Paint textsquare = new Paint();
+    private int squareSize = 250;
 
     //Constructor
     public Squares(Context context, AttributeSet attrs) {
         super(context, attrs);
         squareModel = new SquareModel();
+        setOnTouchListener(squareController);
 
         setWillNotDraw(false);
         setBackgroundColor(Color.WHITE);
         square.setColor(Color.BLACK);
         square.setStyle(Paint.Style.STROKE);
+        square.setStrokeWidth(5);
+        textsquare.setColor(Color.BLACK);
+        textsquare.setTextSize(50);
+        textsquare.setTextAlign(Paint.Align.CENTER);
     }
 
     public Squares(Context context) {
-        super(context);
-        setOnTouchListener(squareController);
+        super(context, null);
     }
 
     @Override
     public void onDraw(Canvas c) {
-        c.drawRect(50f,50f,500f,500f,square);
+        for (int i = 0; i < 4* squareModel.amt; i++) {
+            for (int j = 0; j < 4* squareModel.amt; j++) {
+                int squareNumber = squareModel.squares[i][j];
 
+                if (squareNumber != 0) {
+                    float left = j * squareSize;
+                    float top = i * squareSize;
+                    float right = left + squareSize;
+                    float bottom = top + squareSize;
+                    c.drawRect(left, top, right, bottom, square);
+
+                    String text = String.valueOf(squareNumber);
+                    float textWidth = square.measureText(text);
+                    float textHeight = square.ascent() + square.descent();
+                    float textX = left + (squareSize - textWidth) / 2;
+                    float textY = top + (squareSize - textHeight) / 2;
+                    c.drawText(text, textX, textY, square);
+                    squareModel.squares[i][j] = squareNumber;
+                }
+            }
+        }
     }
 
     //Getter method for the SquareModel

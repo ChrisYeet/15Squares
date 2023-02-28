@@ -19,10 +19,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         SquareModel model = new SquareModel();
-        Squares squares = new Squares(this);
+        Squares squares = findViewById(R.id.somethinsquares);
         SquareController squareController = new SquareController(model, squares);
-
-        model.changeSquare();
 
         squares.setOnTouchListener(squareController);
         squares.setOnDragListener(squareController);

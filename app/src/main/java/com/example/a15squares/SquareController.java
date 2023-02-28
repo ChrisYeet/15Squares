@@ -10,13 +10,14 @@ public class SquareController implements View.OnTouchListener, View.OnDragListen
     private float x,y;
     private Squares square;
     private SquareModel squareModel;
+    private boolean zooming;
 
     public SquareController(SquareModel model, Squares squares) {
         //Setters
-        square = squares;
-        squareModel = squares.getSquareModel();
+        this.square = squares;
+        this.squareModel = squares.getSquareModel();
+        this.zooming = false;
 
-        squareModel.reset(squareModel.amt);
     }
 
     @Override
