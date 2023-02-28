@@ -7,7 +7,6 @@ import java.util.Random;
 //Partly taken from FlappyBird
 public class SquareModel {
     public int amt = 1;
-    public boolean check = false;
     private Random rng;
 
     private int[][] squares;
@@ -42,21 +41,12 @@ public class SquareModel {
         col = rng.nextInt(4);
     }
 
-    public boolean clickSquare(int row, int col) {
-        if (row == this.row && col == this.col) {
-            resetSquares();
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public int row()
+    public int getRow()
     {
         return row;
     }
 
-    public int col() {
+    public int getCol() {
         return col;
     }
 

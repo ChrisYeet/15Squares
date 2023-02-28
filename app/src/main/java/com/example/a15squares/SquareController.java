@@ -9,7 +9,7 @@ import java.util.logging.Handler;
 
 public class SquareController implements View.OnTouchListener, View.OnDragListener, View.OnClickListener, SeekBar.OnSeekBarChangeListener {
     //Instance Vars
-    private int x, y;
+    private float x,y;
     private Squares square;
     private SquareModel squareModel;
 
@@ -27,18 +27,15 @@ public class SquareController implements View.OnTouchListener, View.OnDragListen
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
+        x = event.getX();
+        y = event.getY();
         square.invalidate();
         return false;
     }
 
     @Override
     public void onClick(View v) {
-        square.disableButton();
-        squareModel.check = false;
         squareModel.reset();
-
-        square.enableButton();
-
         square.invalidate();
     }
 
@@ -51,13 +48,11 @@ public class SquareController implements View.OnTouchListener, View.OnDragListen
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-
         square.invalidate();
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-
         square.invalidate();
     }
 }

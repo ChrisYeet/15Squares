@@ -5,65 +5,37 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.Button;
 
-//Partly taken from FlappyBird
+import androidx.annotation.NonNull;
+
 public class Squares extends SurfaceView {
-    //Sets our paints for squares
-    private Button[][] buttons;
 
     //Instance Vars
     private SquareModel squareModel;
+    private SquareController squareController;
+    private Paint square = new Paint();
 
     //Constructor
     public Squares(Context context, AttributeSet attrs) {
         super(context, attrs);
         squareModel = new SquareModel();
-        buttons = new Button[4][4];
-
-        SurfaceHolder holder = getHolder();
-        holder.getSurfaceFrame();
 
         setWillNotDraw(false);
         setBackgroundColor(Color.WHITE);
-
+        square.setColor(Color.BLACK);
+        square.setStyle(Paint.Style.STROKE);
     }
 
-    public void surfaceCreated (SurfaceHolder holder) {
-        holder.getSurfaceFrame();
-
+    public Squares(Context context) {
+        super(context);
+        setOnTouchListener(squareController);
     }
 
-    public void addButton(int row, int col, Button b)
-    {
-        buttons[row][col] = b;
-    }
+    public void onDraw(Canvas c) {
+        c.drawRect(50f,50f,500f,500f,square);
 
-    public void enableButton()
-    {
-        buttons[squareModel.row()][squareModel.col()].setVisibility(View.VISIBLE);
-        buttons[squareModel.row()][squareModel.col()].setClickable(true);
-//        String s = Integer.toString(squareModel.score());
-//        buttons[squareModel.row()][squareModel.col()].setText(s);
-    }
-    public void disableButton()
-    {
-        buttons[squareModel.row()][squareModel.col()].setVisibility(View.INVISIBLE);
-        buttons[squareModel.row()][squareModel.col()].setClickable(false);
-    }
-
-    public void setListener(View.OnClickListener ocl)
-    {
-        for(int i = 0; i < 4; i++)
-        {
-            for(int j = 0; j < 4; j++)
-            {
-                buttons[i][j].setOnClickListener(ocl);
-            }
-        }
     }
 
     //Getter method for the SquareModel
