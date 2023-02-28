@@ -25,8 +25,9 @@ public class SquareController implements View.OnTouchListener, View.OnDragListen
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        x = event.getX();
-        y = event.getY();
+        this.x = event.getX();
+        this.y = event.getY();
+
         square.invalidate();
         return false;
     }
