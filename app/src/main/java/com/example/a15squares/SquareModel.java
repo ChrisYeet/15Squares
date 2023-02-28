@@ -2,7 +2,7 @@ package com.example.a15squares;
 
 import java.util.Random;
 
-//Partly taken from FlappyBird
+//Parts taken from FlappyBird
 public class SquareModel {
     public int amt = 1;
     private Random rng;
@@ -12,8 +12,7 @@ public class SquareModel {
     private int col;
 
 
-    public SquareModel()
-    {
+    public SquareModel() {
         rng = new Random();
         squares = new int[4][4];
         resetSquares();
@@ -29,8 +28,7 @@ public class SquareModel {
         col = rng.nextInt(4);
     }
 
-    public void reset(int progress)
-    {
+    public void reset(int progress) {
         amt = progress;
         squares = new int[4*amt][4*amt];
         resetSquares();
