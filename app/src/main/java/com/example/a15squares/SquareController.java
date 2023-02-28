@@ -15,18 +15,24 @@ public class SquareController implements View.OnTouchListener, View.OnDragListen
         //Setters
         square = squares;
         squareModel = squares.getSquareModel();
+
+        squareModel.reset(squareModel.amt);
     }
 
     @Override
     public boolean onDrag(View v, DragEvent event) {
-            square.invalidate();
+        this.x = event.getX();
+        this.y = event.getY();
+
+        square.invalidate();
         return false;
     }
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        x = event.getX();
-        y = event.getY();
+        this.x = event.getX();
+        this.y = event.getY();
+
         square.invalidate();
         return false;
     }

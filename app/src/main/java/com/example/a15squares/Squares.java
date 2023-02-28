@@ -33,6 +33,7 @@ public class Squares extends SurfaceView {
         setOnTouchListener(squareController);
     }
 
+    @Override
     public void onDraw(Canvas c) {
         c.drawRect(50f,50f,500f,500f,square);
 
