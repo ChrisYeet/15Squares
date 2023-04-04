@@ -23,6 +23,8 @@ public class Squares extends SurfaceView {
     public Squares(Context context, AttributeSet attrs) {
         super(context, attrs);
         squareModel = new SquareModel();
+        squareController = new SquareController(squareModel, this);
+
         setOnTouchListener(squareController);
 
         setWillNotDraw(false);
@@ -41,13 +43,13 @@ public class Squares extends SurfaceView {
 
     @Override
     public void onDraw(Canvas c) {
-        for (int i = 0; i < 4* squareModel.amt; i++) {
-            for (int j = 0; j < 4* squareModel.amt; j++) {
+        for (int i = 0; i < 4 * squareModel.amt; i++) {
+            for (int j = 0; j < 4 * squareModel.amt; j++) {
                 int squareNumber = squareModel.squares[i][j];
 
                 if (squareNumber != 0) {
-                    float left = j * squareSize;
-                    float top = i * squareSize;
+                    float left = j * (float)squareSize;
+                    float top = i * (float)squareSize;
                     float right = left + squareSize;
                     float bottom = top + squareSize;
                     c.drawRect(left, top, right, bottom, square);
@@ -57,8 +59,7 @@ public class Squares extends SurfaceView {
                     float textHeight = square.ascent() + square.descent();
                     float textX = left + (squareSize - textWidth) / 2;
                     float textY = top + (squareSize - textHeight) / 2;
-                    c.drawText(text, textX, textY, square);
-                    squareModel.squares[i][j] = squareNumber;
+                    c.drawText(text, textX, textY, textsquare);
                 }
             }
         }

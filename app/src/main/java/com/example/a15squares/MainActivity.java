@@ -11,7 +11,6 @@ import android.widget.SeekBar;
 
 public class MainActivity extends AppCompatActivity {
 
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +28,6 @@ public class MainActivity extends AppCompatActivity {
         reset.setOnClickListener(squareController);
 
         SeekBar amt = findViewById(R.id.SquareAmt);
-        amt.setOnClickListener(squareController);
+        amt.setOnSeekBarChangeListener(squareController);
     }
 }

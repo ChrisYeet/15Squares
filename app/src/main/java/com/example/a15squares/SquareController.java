@@ -7,16 +7,16 @@ import android.widget.SeekBar;
 
 public class SquareController implements View.OnTouchListener, View.OnDragListener, View.OnClickListener, SeekBar.OnSeekBarChangeListener {
     //Instance Vars
-    private float x,y;
+    private float x, y;
     private Squares square;
     private SquareModel squareModel;
-    private boolean zooming;
+    private boolean bars;
 
     public SquareController(SquareModel model, Squares squares) {
         //Setters
         this.square = squares;
         this.squareModel = squares.getSquareModel();
-        this.zooming = false;
+        this.bars = false;
 
     }
 
@@ -44,7 +44,6 @@ public class SquareController implements View.OnTouchListener, View.OnDragListen
         square.invalidate();
     }
 
-
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         squareModel.reset(progress);
@@ -53,11 +52,13 @@ public class SquareController implements View.OnTouchListener, View.OnDragListen
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
+        bars = true;
         square.invalidate();
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
+        bars = false;
         square.invalidate();
     }
 }
