@@ -55,29 +55,6 @@ public class SquareModel {
         resetSquares();
     }
 
-    //Shuffles
-    public void shuffle() {
-        List<Integer> values = new ArrayList<>();
-        for (int i = 1; i <= 15; i++) {
-            values.add(i);
-        }
-        Collections.shuffle(values);
-
-        int index = 0;
-        for (int i = 0; i < 4*amt; i++) {
-            for (int z = 0; z < 4*amt; z++) {
-                if (index < values.size()) {
-                    squares[i][z] = values.get(index);
-                    index++;
-                } else {
-                    squares[i][z] = 0;
-                    row = i;
-                    col = z;
-                }
-            }
-        }
-    }
-
     //Checks moves
     public void move(int r, int c) {
         if (r == row && c == col) {

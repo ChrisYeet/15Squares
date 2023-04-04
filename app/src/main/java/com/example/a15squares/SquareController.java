@@ -34,6 +34,8 @@ public class SquareController implements View.OnTouchListener, View.OnDragListen
         this.x = event.getX();
         this.y = event.getY();
 
+        if(squareModel.isSolved()) { System.out.println("You win!"); }
+
         square.invalidate();
         return false;
     }
